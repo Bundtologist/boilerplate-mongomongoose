@@ -1,16 +1,24 @@
+// Require dotenv to load environment variables
 require('dotenv').config();
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    console.log('Connected to MongoDB');
-  })
-  .catch((err) => {
-    console.error('Error connecting to MongoDB:', err.message);
-  });
-
-
-
+// Require mongoose
 const mongoose = require('mongoose');
+
+// Get the MongoDB URI from environment variables
+const mongoURI = process.env.MONGO_URI;
+
+// Connect to MongoDB
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => {
+  console.log('MongoDB connected successfully');
+})
+.catch(err => {
+  console.error('Error connecting to MongoDB:', err);
+});
+
 
 let Person;
 
